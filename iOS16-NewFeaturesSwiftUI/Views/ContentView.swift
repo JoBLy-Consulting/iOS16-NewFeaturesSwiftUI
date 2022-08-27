@@ -19,12 +19,40 @@ struct PostDetail: View {
     
 }
 
-struct ContentView: View {
+struct CategoryGrid:View {
+    var category:Categories?
+    var _postGrid:[GridItem] = [
+        GridItem(.adaptive(minimum: 320))
+    ]
     var _postDirectory = PostDirectory()
+    
+    var body: some View {
+        if let category = category {
+            ScrollView {
+                LazyVGrid(columns: _postGrid) {
+                    ForEach(_postDirectory.filterCategory(category: category),id:\.self) { post in
+                        NavigationLink(value:post) {
+                            PostDetail(_post: post)
+                                .frame(height:150)
+                                .truncationMode(.head)
+                                .background(.cyan)
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
+            }
+            .navigationTitle(category.rawValue)
+            .navigationDestination(for: Post.self) { post in PostDetail (_post: post).navigationTitle(post._name)
+            }
+
+        }
+    }
+}
+
+struct ContentView: View {
     var _categories = Categories.allCases
     @State private var _path:[Post] = []
     @State private var selectedCategory: Categories?
-    @State private var selectedPost: Post?
 
     
     var body: some View {
@@ -33,13 +61,10 @@ struct ContentView: View {
                     NavigationLink(category.rawValue, value:category)
             }
             .navigationTitle("Categories")
-        }content: {
-            List(_postDirectory.filterCategory(category: selectedCategory ?? .Category1),selection:$selectedPost) { post in
-                    NavigationLink(post._name, value:post)
-            }
-            .navigationTitle(selectedCategory?.rawValue ?? "Category 1")
         }detail: {
-            PostDetail(_post: selectedPost ?? Post(id: 0, _name: "Auto", _content: "Auto", _category: .Category1)).navigationTitle(selectedPost?._name ?? "Auto")
+            NavigationStack(path: $_path) {
+                CategoryGrid(category: selectedCategory)
+            }
         }
     }
 }
