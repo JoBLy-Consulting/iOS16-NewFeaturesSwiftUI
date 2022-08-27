@@ -23,22 +23,23 @@ struct ContentView: View {
     var _postDirectory = PostDirectory()
     var _categories = Categories.allCases
     @State private var _path:[Post] = []
+    @State private var selectedCategory: Categories?
+    @State private var selectedPost: Post?
+
     
     var body: some View {
-        NavigationStack(path:$_path) {
-            List {
-                ForEach(_categories, id:\.self) { category in
-                    Section(header:Text(category.rawValue)) {
-                        ForEach(_postDirectory.filterCategory(category: category), id:\.self) { post in
-                            NavigationLink(post._name, value:post)
-                        }
-                    }
-                }
+        NavigationSplitView {
+            List (_categories, selection:$selectedCategory) { category in
+                    NavigationLink(category.rawValue, value:category)
             }
             .navigationTitle("Categories")
-            .navigationDestination(for: Post.self) { post in
-                PostDetail(_post: post).navigationTitle(post._name)
+        }content: {
+            List(_postDirectory.filterCategory(category: selectedCategory ?? .Category1),selection:$selectedPost) { post in
+                    NavigationLink(post._name, value:post)
             }
+            .navigationTitle(selectedCategory?.rawValue ?? "Category 1")
+        }detail: {
+            PostDetail(_post: selectedPost ?? Post(id: 0, _name: "Auto", _content: "Auto", _category: .Category1)).navigationTitle(selectedPost?._name ?? "Auto")
         }
     }
 }
