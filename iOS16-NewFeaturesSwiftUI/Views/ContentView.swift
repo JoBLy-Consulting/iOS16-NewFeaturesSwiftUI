@@ -22,22 +22,23 @@ struct PostDetail: View {
 struct ContentView: View {
     var _postDirectory = PostDirectory()
     var _categories = Categories.allCases
+    @State private var _path:[Post] = []
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path:$_path) {
             List {
                 ForEach(_categories, id:\.self) { category in
                     Section(header:Text(category.rawValue)) {
                         ForEach(_postDirectory.filterCategory(category: category), id:\.self) { post in
-                            NavigationLink(
-                                destination: PostDetail(_post: post).navigationTitle(post._name)) {
-                                    Label(post._name, systemImage: "newspaper")
-                                }
+                            NavigationLink(post._name, value:post)
                         }
                     }
                 }
             }
             .navigationTitle("Categories")
+            .navigationDestination(for: Post.self) { post in
+                PostDetail(_post: post).navigationTitle(post._name)
+            }
         }
     }
 }
