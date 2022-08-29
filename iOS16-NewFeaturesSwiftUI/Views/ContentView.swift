@@ -12,6 +12,7 @@ struct PostDetail: View {
     
     var body: some View {
         VStack {
+            Text(_post.dateFormat(type:"long"))
             Text(_post._content).padding(10)
             Spacer()
         }
@@ -44,7 +45,6 @@ struct CategoryGrid:View {
             .navigationTitle(category.rawValue)
             .navigationDestination(for: Post.self) { post in PostDetail (_post: post).navigationTitle(post._name)
             }
-
         }
     }
 }
