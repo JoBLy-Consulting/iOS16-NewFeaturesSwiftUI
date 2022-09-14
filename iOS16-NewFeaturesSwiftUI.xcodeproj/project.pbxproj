@@ -19,6 +19,9 @@
 		E614536A28BD0D420043008E /* RectangularPostWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E614536928BD0D420043008E /* RectangularPostWidget.swift */; };
 		E614536C28BD0D570043008E /* LinearPostWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E614536B28BD0D570043008E /* LinearPostWidget.swift */; };
 		E614536E28BD0D790043008E /* CircularPostWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E614536D28BD0D790043008E /* CircularPostWidget.swift */; };
+		E63AE6CB28D125C600C9C2CD /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63AE6CA28D125C600C9C2CD /* Subscription.swift */; };
+		E63AE6CD28D128FF00C9C2CD /* SubscriptionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63AE6CC28D128FF00C9C2CD /* SubscriptionList.swift */; };
+		E63AE6CF28D12B2A00C9C2CD /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63AE6CE28D12B2A00C9C2CD /* ChartsView.swift */; };
 		E6C3658428BA700100366642 /* iOS16_NewFeaturesSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C3658328BA700100366642 /* iOS16_NewFeaturesSwiftUIApp.swift */; };
 		E6C3658628BA700100366642 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C3658528BA700100366642 /* ContentView.swift */; };
 		E6C3658828BA700200366642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6C3658728BA700200366642 /* Assets.xcassets */; };
@@ -62,6 +65,9 @@
 		E614536928BD0D420043008E /* RectangularPostWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularPostWidget.swift; sourceTree = "<group>"; };
 		E614536B28BD0D570043008E /* LinearPostWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearPostWidget.swift; sourceTree = "<group>"; };
 		E614536D28BD0D790043008E /* CircularPostWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularPostWidget.swift; sourceTree = "<group>"; };
+		E63AE6CA28D125C600C9C2CD /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
+		E63AE6CC28D128FF00C9C2CD /* SubscriptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionList.swift; sourceTree = "<group>"; };
+		E63AE6CE28D12B2A00C9C2CD /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		E6C3658028BA700100366642 /* iOS16-NewFeaturesSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS16-NewFeaturesSwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C3658328BA700100366642 /* iOS16_NewFeaturesSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS16_NewFeaturesSwiftUIApp.swift; sourceTree = "<group>"; };
 		E6C3658528BA700100366642 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				E6C3659528BA709B00366642 /* Post.swift */,
+				E63AE6CA28D125C600C9C2CD /* Subscription.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				E6C3658528BA700100366642 /* ContentView.swift */,
+				E63AE6CE28D12B2A00C9C2CD /* ChartsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				E6C3659728BA710600366642 /* PostDirectory.swift */,
+				E63AE6CC28D128FF00C9C2CD /* SubscriptionList.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -295,7 +304,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E63AE6CB28D125C600C9C2CD /* Subscription.swift in Sources */,
 				E6C3659628BA709B00366642 /* Post.swift in Sources */,
+				E63AE6CD28D128FF00C9C2CD /* SubscriptionList.swift in Sources */,
+				E63AE6CF28D12B2A00C9C2CD /* ChartsView.swift in Sources */,
 				E6C3659828BA710600366642 /* PostDirectory.swift in Sources */,
 				E6C3658628BA700100366642 /* ContentView.swift in Sources */,
 				E614535F28BCB76C0043008E /* PostWidgetPurple.intentdefinition in Sources */,
