@@ -15,22 +15,22 @@ struct MonthChartsView: View {
         VStack {
             Text("Monthly subscriptions")
             Chart(subscriptionsList._subscriptions) {
-                LineMark(x: .value("Month", $0.month, unit: .month), y: .value("Subscriptions", $0.dailyAverage))
+                LineMark(x: .value("Month",$0.month, unit: .month), y: .value("Subscriptions", $0.dailyAverage))
                     .foregroundStyle(.red)
                     .interpolationMethod(.catmullRom)
-                PointMark(x: .value("Month", $0.month, unit: .month), y: .value("Subscriptions", $0.dailyAverage))
+                PointMark(x:.value("Month", $0.month, unit: .month), y:.value("Subscriptions", $0.dailyAverage))
                     .symbol(.diamond)
                 AreaMark(x: .value("Month", $0.month, unit: .month), y: .value("Subscriptions", $0.dailyAverage))
                     .interpolationMethod(.catmullRom)
                     .opacity(0.2)
-                
             }
-            .chartXAxis {
-                AxisMarks(values: .stride(by: .month)) { value in
+            .chartXAxis{
+                AxisMarks(values: .stride(by: .month)) {
                     AxisGridLine()
                     AxisValueLabel(format: .dateTime.month(.narrow), centered: true)
                 }
             }
+            
         }
     }
 }
@@ -48,13 +48,10 @@ struct QuarterChartsView: View {
                 )
             }
             .chartXAxis {
-                AxisMarks(values: .stride(by: .month)) { value in
-                    if value.as (Date.self)!.isFirstMonthOfQuarter {
-                        AxisGridLine()
-                        AxisValueLabel(format: .dateTime.quarter())
-                    } else {
-                        AxisGridLine()
-                    }
+                AxisMarks { value in
+                    AxisGridLine()
+                    AxisValueLabel(format: .dateTime.quarter(), centered: true)
+                    
                 }
             }
         }
@@ -72,16 +69,14 @@ struct YearChartsView: View {
                     LineMark(x: .value("Month", element.month, unit: .month), y: .value("Subscriptions", element.dailyAverage))
                         .interpolationMethod(.catmullRom)
                     PointMark(x: .value("Month", element.month, unit: .month), y: .value("Subscriptions", element.dailyAverage))
-                        .symbol(.diamond)
                 }
                 .foregroundStyle(by: .value("Year", series.year))
-                
             }
-            .chartLegend(position: .top)
             .chartForegroundStyleScale([
                 "2022": .purple,
                 "2021": .green
             ])
+            .chartLegend(position: .top)
             .chartXAxis {
                 AxisMarks(values: .stride(by: .month)) { value in
                     AxisGridLine()
@@ -92,12 +87,12 @@ struct YearChartsView: View {
     }
 }
 
-struct ChartsView_Previews: PreviewProvider {
+struct MonthChartsView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            YearChartsView().frame(width:320,height:240)
-            MonthChartsView().frame(width:320, height:240)
-            QuarterChartsView().frame(width:320, height:240)
+        VStack{
+            MonthChartsView().frame(width:320,height: 240)
+            QuarterChartsView().frame(width:320,height: 240)
+            YearChartsView().frame(width:320,height: 240)
         }
     }
 }
